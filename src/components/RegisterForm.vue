@@ -20,7 +20,7 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'RegisterForm',
   setup() {
-    const selectedFile = ref('')
+    const selectedFile = ref()
     const newUser = ref({
       nombre: '',
       apellido: '',
@@ -33,7 +33,7 @@ export default defineComponent({
     }
 
     return {
-      newUser
+      newUser, selectedFile
     }
   }
 })

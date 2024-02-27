@@ -3,12 +3,13 @@
     <q-header elevated>
       <q-toolbar>
 
-
         <q-toolbar-title>
-          Quasar App
+          <q-btn flat label="Quasar App" to="/" />
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>
+          <q-btn label="Agregar personal" outline color="orange" to="/person" />
+        </div>
       </q-toolbar>
     </q-header>
 

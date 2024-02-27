@@ -1,6 +1,6 @@
 <template>
-  <q-page>
-    <q-tabs v-model="tab" animated>
+  <q-card>
+    <q-tabs v-model="tab" align="justify" active-color="primary" indicator-color="primary">
       <q-tab name="staff" label="Personal" />
       <q-tab name="report" label="Reportes" />
     </q-tabs>
@@ -15,7 +15,7 @@
         <ReportComponent />
       </q-tab-panel>
     </q-tab-panels>
-  </q-page>
+  </q-card>
 </template>
 
 <script>

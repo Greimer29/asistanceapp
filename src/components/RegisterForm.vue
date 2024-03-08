@@ -9,12 +9,13 @@
       <q-input filled label="Nombre" v-model="newUser.nombre" />
       <q-input filled label="Apellido" v-model="newUser.apellido" />
       <q-input filled label="Cargo" v-model="newUser.cargo" />
-      <q-btn label="Guardar" color="positive" />
+      <q-btn label="Guardar" color="positive" @click="enviar" />
     </q-form>
   </div>
 </template>
 
 <script>
+import { api } from 'src/boot/axios';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -32,8 +33,23 @@ export default defineComponent({
       formData.append("image", selectedFile.value);
     }
 
+    api.get('/')
+      .then(res => {
+        console.log(res.data)
+      })
+
+    const enviar = () => {
+      api.post('apiv1/users/add', { user: newUser })
+        .then(res => {
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
     return {
-      newUser, selectedFile
+      newUser, selectedFile, enviar
     }
   }
 })

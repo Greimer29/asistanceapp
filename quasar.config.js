@@ -49,7 +49,7 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       env: {
-        API_LOCAL: "http://localhost:3333/",
+        API_LOCAL: "http://localhost:3333",
         API_REMOTE: "",
       },
       target: {

@@ -1,73 +1,42 @@
 <template>
-  <q-card>
-    <q-tabs v-model="tab" align="justify" active-color="primary" indicator-color="primary">
-      <q-tab name="staff" label="Personal registrado" />
-      <q-tab name="report" label="Reportes" />
-    </q-tabs>
-    <q-tab-panels v-model="tab">
-      <q-tab-panel name="staff" label="personal">
-        <div class="text-center q-mb-md">
-          <q-btn color="positive" label="Pasar Asistencia" @click="askUser()" />
-        </div>
-        <StaffComponent />
-      </q-tab-panel>
-      <q-tab-panel name="report" label="Reportes">
-        <ReportComponent />
-      </q-tab-panel>
-    </q-tab-panels>
-  </q-card>
+  <q-page class="row justify-evenly">
+    <div class="full">
+
+      <q-page-sticky position="bottom-left" :offset="[18, 18]">
+        <q-btn @click="goScan" fab icon="camera_alt" color="blue" />
+      </q-page-sticky>
+    </div>
+  </q-page>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import StaffComponent from 'src/components/StaffComponent.vue';
-import ReportComponent from 'src/components/ReportComponent.vue';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { Clipboard } from '@capacitor/clipboard'
+import { useRouter } from 'vue-router';
 
 
 export default defineComponent({
   name: 'IndexPage',
-  components: {
-    StaffComponent,
-    ReportComponent
-  },
   setup() {
-    const prepare = () => {
-      BarcodeScanner.prepare();
-    };
+    const router = useRouter()
 
-    const startScan = async () => {
-      try {
-        BarcodeScanner.hideBackground();
-        const result = await BarcodeScanner.startScan();
-        if (result.hasContent) {
-          console.log(result.content);
-        }
-      } catch (error) {
-        alert('Error' + error)
-      }
-    };
+    const goScan = () => {
+      router.push('/scanner');
+    }
 
-    const stopScan = () => {
-      BarcodeScanner.showBackground();
-      BarcodeScanner.stopScan();
-    };
-
-    const askUser = () => {
-      prepare();
-
-      const c = confirm('Do you want to scan a barcode?');
-
-      if (c) {
-        startScan();
-      } else {
-        stopScan();
-      }
-    };
+    const copy = async (text) => {
+      await Clipboard.write({
+        string: text
+      });
+      Notify.create({
+        message: 'Copied.'
+      });
+    }
 
     return {
-      askUser,
-      tab: ref('staff')
+      goScan,
+      copy,
+
     }
   }
 })

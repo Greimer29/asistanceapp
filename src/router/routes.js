@@ -8,6 +8,10 @@ const routes = [
         path: "/person",
         component: () => import("components/RegisterForm.vue"),
       },
+      {
+        path: "/scanner",
+        component: () => import("pages/ScannerPage.vue"),
+      },
     ],
   },
 

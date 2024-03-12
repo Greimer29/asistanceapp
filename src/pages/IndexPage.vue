@@ -2,7 +2,7 @@
   <q-page class="row justify-evenly">
     <div class="full">
 
-      <q-page-sticky position="bottom-left" :offset="[18, 18]">
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
         <q-btn @click="goScan" fab icon="camera_alt" color="blue" />
       </q-page-sticky>
     </div>

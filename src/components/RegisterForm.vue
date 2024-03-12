@@ -35,34 +35,38 @@ export default defineComponent({
       cargo: ''
     })
 
-    if (selectedFile.value != null) {
-      const formData = new FormData();
-      formData.append("image", selectedFile.value);
-    }
-
-
     const enviar = () => {
-      api.post('apiv1/users/add', {
-        name: newUser.value.nombre,
-        lastName: newUser.value.apellido,
-        charges: newUser.value.cargo
-      })
-        .then(res => {
-          console.log(res.data)
-          $q.notify({
-            position: 'top',
-            color: 'positive',
-            message: 'Personal registrado exitosamente'
-          })
+
+      if (selectedFile.value != null) {
+        const formData = new FormData();
+        formData.append("foto", selectedFile.value);
+
+        return console.log(formData)
+
+        api.post('apiv1/users/add', {
+          name: newUser.value.nombre,
+          lastName: newUser.value.apellido,
+          charges: newUser.value.cargo,
+          foto: formData
         })
-        .catch(err => {
-          console.log(err)
-          $q.notify({
-            position: 'bottom',
-            color: 'negative',
-            message: 'Ha ocurrido un error'
+          .then(res => {
+            console.log(res.data)
+            $q.notify({
+              position: 'top',
+              color: 'positive',
+              message: 'Personal registrado exitosamente'
+            })
           })
-        })
+          .catch(err => {
+            console.log(err)
+            $q.notify({
+              position: 'bottom',
+              color: 'negative',
+              message: 'Ha ocurrido un error'
+            })
+          })
+      }
+
     }
 
     return {

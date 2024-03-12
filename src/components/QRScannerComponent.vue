@@ -81,20 +81,20 @@ export default defineComponent({
           onPlayedListener.remove();
         }
 
-        frameReadListener = await DBR.addListener('onFrameRead', (scanResult) => {
+        frameReadListener = await DBR.addListener('onFrameRead', function (scanResult) {
           for (let index = 0; index < scanResult.results.length; index++) {
             const result = scanResult.results[index];
             if (scanResult.deviceOrientation && scanResult.frameOrientation) {
               handleRotation(result, scanResult.deviceOrientation, scanResult.frameOrientation);
             }
           }
-          emit('onScanned', scanResult);
+          this.emit('onScanned', scanResult);
         });
 
-        onPlayedListener = await DBR.addListener('onPlayed', (result) => {
+        onPlayedListener = await DBR.addListener('onPlayed', function (result) {
           currentWidth = parseInt(result.resolution.split('x')[0]);
           currentHeight = parseInt(result.resolution.split('x')[1]);
-          emit('onPlayed', result.resolution);
+          this.emit('onPlayed', result.resolution);
         });
 
         if (props.runtimeSettings) {

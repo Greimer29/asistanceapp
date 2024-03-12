@@ -14,12 +14,21 @@
   },
   "dependencies": {
     "@capacitor-community/barcode-scanner": "^4.0.1",
+    "@capacitor/app": "^5.0.7",
+    "@capacitor/cli": "^5.7.2",
+    "@capacitor/clipboard": "^5.0.7",
+    "@capacitor/core": "^5.7.2",
     "@quasar/extras": "^1.16.4",
+    "@vue/composition-api": "^1.7.2",
     "axios": "^1.2.1",
+    "capacitor-plugin-dynamsoft-barcode-reader": "^1.5.0",
     "cordova-android": "^12.0.1",
+    "pinia": "^2.1.7",
     "quasar": "^2.8.0",
     "vue": "^3.4.18",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuex": "^4.1.0",
+    "vuex-composition-helpers": "^1.2.0"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.4.3",

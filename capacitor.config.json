@@ -1,0 +1,8 @@
+{
+  "appId": "asistances.iunav.edu",
+  "appName": "asistencias",
+  "webDir": "www.asistances.iunav.edu.ve",
+  "server": {
+    "androidScheme": "https"
+  }
+}

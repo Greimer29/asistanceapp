@@ -3,7 +3,7 @@
     <q-card class="no-shadow" bordered>
       <q-card-section class="text-center">
         <q-avatar size="100px" class="shadow-10">
-          <img :src="avatar">
+          <img :src="`${process.env.API_LOCAL}/public/${avatar}`">
         </q-avatar>
       </q-card-section>
 

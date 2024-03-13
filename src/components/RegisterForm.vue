@@ -36,26 +36,34 @@ export default defineComponent({
     })
 
     const enviar = () => {
-
       if (selectedFile.value != null) {
         const formData = new FormData();
         formData.append("foto", selectedFile.value);
-
-        return console.log(formData)
 
         api.post('apiv1/users/add', {
           name: newUser.value.nombre,
           lastName: newUser.value.apellido,
           charges: newUser.value.cargo,
-          foto: formData
         })
           .then(res => {
             console.log(res.data)
-            $q.notify({
-              position: 'top',
-              color: 'positive',
-              message: 'Personal registrado exitosamente'
-            })
+            api.post(`apiv1/users/upload/${res.data}`, formData)
+              .then(res => {
+                console.log(res.data)
+                $q.notify({
+                  position: 'top',
+                  color: 'positive',
+                  message: 'Personal registrado exitosamente'
+                })
+              })
+              .catch(err => {
+                console.log(err)
+                $q.notify({
+                  position: 'bottom',
+                  color: 'negative',
+                  message: 'Ha ocurrido un error'
+                })
+              })
           })
           .catch(err => {
             console.log(err)
